@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.game.App;
 import com.game.objects.Plane;
+import com.game.utils.PlaneMover;
 import com.game.utils.Renderer;
 
 public class GameController implements Screen {
@@ -13,11 +14,13 @@ public class GameController implements Screen {
     private App app;
     private Plane plane;
     private Renderer renderer;
+    private PlaneMover planeMover;
 
     public GameController(App app) {
         this.app = app;
         this.plane = new Plane(10, 10, 10, 10);
         this.renderer = new Renderer(this.plane);
+        this.planeMover = new PlaneMover(this.plane);
     }
 
     @Override
@@ -30,6 +33,7 @@ public class GameController implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         this.renderer.render(this.app.renderer);
+        this.planeMover.move();
 
 
     }
